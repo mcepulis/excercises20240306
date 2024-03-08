@@ -44,7 +44,7 @@ console.log(factorial(4));
 
 console.log("7.Parašykite funkciją, kuri priima masyvą skaičių ir skaičių kaip argumentus, o grąžina naują masyvą, kuriame yra tik tie skaičiai, kurie didesni už pateiktą skaičių***")
 function greaterThan(arr, num) {
-    newArr = [];
+    const newArr = [];
     for (let i = 0; i < arr.length; i++) {
         if (arr[i] > num) {
             newArr.push(arr[i]);
