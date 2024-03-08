@@ -186,16 +186,28 @@ console.log(symbolRepeat("programavimas", "a"));
 // Veiksmingumas: stenkitės optimizuoti funkciją taip, kad ji veiktų kuo efektyviau su dideliais masyvais.
 // Unikalumas: grąžinamame masyve neturėtų būti pasikartojančių elementų.
 console.log("20. Parašykite funkciją, kuri priima kelių masyvų sąrašą ir grąžina naują masyvą, kuris sudarytas tik iš tų elementų, kurie pasikartoja visuose pradiniuose masyvuose.")
-function newArray(arr1, arr2) {
-    const array1 = arr1.filter((value, index, arr) => arr.indexOf(value) !== index && arr.lastIndexOf(value) === index)
-    console.log(array1);
-    const array2 = arr2.filter((value, index, arr) => arr.indexOf(value) !== index && arr.lastIndexOf(value) === index)
-    console.log(array2);
-    const result = array1.concat(array2);
-    return result.filter((value, index, arr) => arr.lastIndexOf(value) === index)
-}
-console.log(newArray([1,2,3,4,5,6,5,4,3,2,1], [10,11,12,1,2,3,4,5,10]));
+// function newArray(arr1, arr2) {
+//     const array1 = arr1.filter((value, index, arr) => arr.indexOf(value) !== index && arr.lastIndexOf(value) === index)
+//     console.log(array1);
+//     const array2 = arr2.filter((value, index, arr) => arr.indexOf(value) !== index && arr.lastIndexOf(value) === index)
+//     console.log(array2);
+//     const result = array1.concat(array2);
+//     return result.filter((value, index, arr) => arr.lastIndexOf(value) === index)
+// }
+// console.log(newArray([1,2,3,4,5,6,5,4,3,2,1], [10,11,12,1,2,3,4,5,10, 5]));
 
+
+function newArray(...arrays) {
+    const nArrays = arrays.map(arr =>
+        arr.filter((value, index, array) => array.indexOf(value) !== index && array.lastIndexOf(value) === index)
+    );
+
+    const result = [].concat(...nArrays);
+
+    return result.filter((value, index, array) => array.lastIndexOf(value) === index);
+}
+
+console.log(newArray([1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1], [10, 11, 12, 1, 2, 3, 4, 5, 10, 5], [10,5,1,2,11,11]));
 
 
 
